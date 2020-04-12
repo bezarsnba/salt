@@ -1,0 +1,36 @@
+---
+  - name: Install Repo
+    yum:
+      name: https://repo.saltstack.com/yum/redhat/salt-repo-2019.2.el7.noarch.rpm 
+      state: present
+    become: yes
+
+  - name: Install salt-minion
+    yum:
+      name: salt-minion
+      state: present
+    #when: ansible_hostname == "salt-slave"
+
+  - name: Install salt-master
+    yum:
+      name: salt-master
+      state: present
+      #update_cache: yes
+    when: ansible_hostname == "salt-master"
+
+  - name: Copy master to  /etc/salt/
+    copy:
+      src: files/master
+      dest: /etc/salt/master
+      #update_cache: yes
+    become: yes
+    when: ansible_hostname == "salt-master"
+
+#  - name: Copy master to  /etc/salt/
+#    copy:
+#      src: files/minion-key
+#      dest: /tmp/
+#      #update_cache: yes
+#    become: yes
+#    when: ansible_hostname == "salt-slave"
+

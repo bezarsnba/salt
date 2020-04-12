@@ -1,0 +1,10 @@
+# https://repo.saltstack.com/yum/redhat/7/x86_64/archive/2019.2.0/salt-2019.2.0-1.el7.noarch.rpm
+
+# https://repo.saltstack.com/yum/redhat/7/x86_64/archive/2019.2.0/salt-minion-2019.2.0-1.el7.noarch.rpm
+
+---
+- hosts: zbx-proxy
+  remote_user: vagrant
+  become: yes
+  roles:
+    - install-salt   

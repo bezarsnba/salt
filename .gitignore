@@ -1,2 +1,5 @@
 .vagrant/*
 .git/*
+*.pem
+*.pub
+
